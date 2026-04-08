@@ -1,16 +1,18 @@
-import styles from "./Sidebar.module.css"
-
-// Supposed to be clickable and would take you to another page, but that is not implemented yet.
+import React, { useContext } from "react";
+import styles from "./Sidebar.module.css";
+import { AppContext } from "../App";
 
 export default function Sidebar() {
+    const { setCurrentPage } = useContext(AppContext);
+
     return (
         <>
             <div className={styles["sidebar"]}>
                 <div className={styles["sidebarPanel"]}>
-                    <span style={{"font-size": "24px", "color": "var(--accent)", "font-weight": "bold"}}> App Name Here </span>
-                    <SidebarTab Icon={TemporaryIconPlaceholder}> Tab 1 </SidebarTab>
-                    <SidebarTab Icon={TemporaryIconPlaceholder}> Tab 2 </SidebarTab>
-                    <SidebarTab Icon={TemporaryIconPlaceholder}> Tab 3 </SidebarTab>
+                    <span style={{ fontSize: "24px", color: "var(--accent)", fontWeight: "bold" }}> App Name Here </span>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'dashboard' })} Icon={TemporaryIconPlaceholder}> Dashboard </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'clients' })} Icon={TemporaryIconPlaceholder}> Clients </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'payments' })} Icon={TemporaryIconPlaceholder}> Payments </SidebarTab>
                 </div>
             </div>
         </>
@@ -19,20 +21,16 @@ export default function Sidebar() {
 
 function TemporaryIconPlaceholder() {
     return (
-        <div style={{display: "inline", minHeight: "48px", minWidth: "48px", backgroundColor: "green"}}>
+        <div style={{ display: "inline", minHeight: "48px", minWidth: "48px", backgroundColor: "green" }}>
             icon
         </div>
     )
 }
 
-function SidebarTab({Page, Icon, children}) {
-    const onClick = () => {
-        
-    }
-
+function SidebarTab({ onClick, Icon, children }) {
     return (
-        <div className={styles["sidebarTab"]}>
-            <Icon/>
+        <div className={styles["sidebarTab"]} onClick={onClick}>
+            <Icon />
             {children}
         </div>
     )
