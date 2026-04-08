@@ -6,8 +6,6 @@ import ContentMain from "../components/ContentMain";
 import {RecentTransactionsTable} from "./RecentTransactionsTable";
 
 export default function DashboardPage() {
-    const {dataState, CurrentPage} = useContext(AppContext);
-
     return (
         <>
         <ContentHeader>

@@ -4,25 +4,35 @@ import { AppContext } from "../App";
 
 export function RecentTransactionsTable() {
 
+    // useContext(AppContext) is a way to store variables globally
+    // Get `data` from it
     const { data } = useContext(AppContext);
+    // Then you can use it
+    // console.log(Object.values(data.clients))
 
-    const getRecentPayments = useCallback(() => {
-        const unsorted = data.getAllClients().flatMap(client => {
-            return client.getProperties().flatMap(property => {
-                return property.getPayments().flatMap(payment => {
-                    return {
-                        paymentId: payment.id,
-                        clientName: client.fullName,
-                        date: payment.paymentDate,
-                        propertyName: property.getDisplayName(),
-                        amount: payment.amount
-                    }
-                })
-            });
-        });
-        
-        return unsorted.sort((p1, p2) => p1.date < p2.date);
-    });
+    const getPropertyName = (property) => `${property.area} - Blk. ${property.blockNumber} Lot ${property.lotNumber}`;
+
+    const getRecentPayments = () => {
+            const out = Object.values(data.clients).flatMap(client => {
+                return client.propertyIds.map(i => data.properties[i]).flatMap(property => {
+                    return property.account.paymentIds.map(i => data.payments[i]).flatMap(payment => {
+                        return {
+                            paymentId: payment.id,
+                            clientName: client.fullName,
+                            date: payment.paymentDate,
+                            propertyName: getPropertyName(property),
+                            amount: payment.amount,
+                            clientId: client.id,
+                            propertyLotId: property.id
+                        }
+                    })
+                });
+            })
+
+            out.sort((a, b) => b.date - a.date);
+    
+            return out;
+    };
 
     const recentPayments = getRecentPayments();
 

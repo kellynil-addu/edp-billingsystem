@@ -104,7 +104,7 @@ const sample = {
         },
 
         2: {
-            id: 1,
+            id: 2,
             area: 'San Vic area',
             blockNumber: 8,
             lotNumber: 4,
@@ -409,11 +409,11 @@ export function loadData() {
 
     if (jsonData) {
         const data = JSON.parse(jsonData);
-        return new AppData(data);
+        return data;
     } else {
         const data = {...sample};
         saveToStorage(data);
-        return new AppData(data);
+        return data;
     }
 }
 
