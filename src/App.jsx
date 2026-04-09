@@ -43,11 +43,7 @@ export default function App() {
     };
 
     return (
-<<<<<<< HEAD
-            <AppContext.Provider value={{dataState, currentPage, setCurrentPage}}>
-=======
             <AppContext.Provider value={{data, setCurrentPage}}>
->>>>>>> e9cf87a (Record List View)
                 <div style={{display: "flex", alignItems: "stretch", height: "100vh", width: "100vw", maxHeight: "100vh"}}>
                         <Sidebar/>
                         <Content>

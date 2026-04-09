@@ -11,14 +11,9 @@ export default function Sidebar() {
                 <div className={styles["sidebarPanel"]}>
                     <span style={{ fontSize: "24px", color: "var(--accent)", fontWeight: "bold" }}> App Name Here </span>
                     <SidebarTab onClick={() => setCurrentPage({ name: 'dashboard' })} Icon={TemporaryIconPlaceholder}> Dashboard </SidebarTab>
-<<<<<<< HEAD
-                    <SidebarTab onClick={() => setCurrentPage({ name: 'clients' })} Icon={TemporaryIconPlaceholder}> Clients </SidebarTab>
-                    <SidebarTab onClick={() => setCurrentPage({ name: 'payments' })} Icon={TemporaryIconPlaceholder}> Payments </SidebarTab>
-=======
                     <SidebarTab onClick={() => setCurrentPage({ name: 'properties' })} Icon={TemporaryIconPlaceholder}> Properties </SidebarTab>
                     <SidebarTab onClick={() => setCurrentPage({ name: 'payments' })} Icon={TemporaryIconPlaceholder}> Payments </SidebarTab>
                     <SidebarTab onClick={() => setCurrentPage({ name: 'about' })} Icon={TemporaryIconPlaceholder}> About </SidebarTab>
->>>>>>> e9cf87a (Record List View)
                 </div>
             </div>
         </>
