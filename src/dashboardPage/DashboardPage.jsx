@@ -3,7 +3,7 @@ import { AppContext } from "../App";
 import Card from "../components/Card";
 import ContentHeader from "../components/ContentHeader";
 import ContentMain from "../components/ContentMain";
-import {RecentTransactionsTable} from "./RecentTransactionsTable";
+import {RecentTransactionsList} from "./RecentTransactionsList";
 
 export default function DashboardPage() {
     return (
@@ -20,7 +20,7 @@ export default function DashboardPage() {
                 <Card style={{gridRow: "1/3", gridColumn: "2"}}>
                     <h3>Recent payments</h3>
 
-                    <RecentTransactionsTable/>
+                    <RecentTransactionsList/>
                 </Card>
             </div>
         </ContentMain>
