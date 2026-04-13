@@ -7,7 +7,8 @@ import React from "react";
 // - loading: boolean
 // - onView(id): callback when View is clicked
 // - onEdit(id): callback when Edit is clicked
-export default function RecordList({ records = [], recordType = "records", loading = false, onView, onEdit }) {
+// - onDelete(id): callback when Delete is clicked
+export default function RecordList({ records = [], recordType = "records", loading = false, onView, onEdit, onDelete }) {
     const containerStyle = {
         width: "100%",
         backgroundColor: "#FFFFFF",
@@ -54,6 +55,10 @@ export default function RecordList({ records = [], recordType = "records", loadi
         if (typeof onEdit === "function") return onEdit(id);
         // Default behavior: route to /edit/[type]/[id]
         window.location.href = `/edit/${recordType}/${id}`;
+    };
+
+    const handleDelete = (id) => {
+        if (typeof onDelete === "function") return onDelete(id);
     };
 
     // Helper to pick the primary label for a record
@@ -107,6 +112,7 @@ export default function RecordList({ records = [], recordType = "records", loadi
                                         <td style={{ padding: "8px", textAlign: "center" }}>
                                             <button onClick={() => handleView(id)} aria-label={`View ${id}`} style={{ padding: "6px 10px" }}>View</button>
                                             {onEdit && <button onClick={() => handleEdit(id)} aria-label={`Edit ${id}`} style={{ padding: "6px 10px", marginLeft: 8 }}>Edit</button>}
+                                            {onDelete && <button onClick={() => handleDelete(id)} aria-label={`Delete ${id}`} style={{ padding: "6px 10px", marginLeft: 8 }}>Delete</button>}
                                         </td>
                                     </tr>
                                 );
@@ -149,6 +155,7 @@ export default function RecordList({ records = [], recordType = "records", loadi
                             <div style={actionsStyle}>
                                 <button onClick={() => handleView(id)} aria-label={`View ${id}`} style={{ padding: "6px 10px" }}>View</button>
                                 {onEdit && <button onClick={() => handleEdit(id)} aria-label={`Edit ${id}`} style={{ padding: "6px 10px" }}>Edit</button>}
+                                {onDelete && <button onClick={() => handleDelete(id)} aria-label={`Delete ${id}`} style={{ padding: "6px 10px" }}>Delete</button>}
                             </div>
                         </div>
                     );

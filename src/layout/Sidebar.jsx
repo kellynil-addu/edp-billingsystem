@@ -10,10 +10,11 @@ export default function Sidebar() {
             <div className={styles["sidebar"]}>
                 <div className={styles["sidebarPanel"]}>
                     <span style={{ fontSize: "24px", color: "var(--accent)", fontWeight: "bold" }}> App Name Here </span>
-                    <SidebarTab onClick={() => setCurrentPage({ name: 'dashboard' })} Icon={TemporaryIconPlaceholder}> Dashboard </SidebarTab>
-                    <SidebarTab onClick={() => setCurrentPage({ name: 'properties' })} Icon={TemporaryIconPlaceholder}> Properties </SidebarTab>
-                    <SidebarTab onClick={() => setCurrentPage({ name: 'payments' })} Icon={TemporaryIconPlaceholder}> Payments </SidebarTab>
-                    <SidebarTab onClick={() => setCurrentPage({ name: 'about' })} Icon={TemporaryIconPlaceholder}> About </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'dashboard' })} icon={TemporaryIconPlaceholder}> Dashboard </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'clients' })} icon={TemporaryIconPlaceholder}> Clients </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'properties' })} icon={TemporaryIconPlaceholder}> Properties </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'payments' })} icon={TemporaryIconPlaceholder}> Payments </SidebarTab>
+                    <SidebarTab onClick={() => setCurrentPage({ name: 'about' })} icon={TemporaryIconPlaceholder}> About </SidebarTab>
                 </div>
             </div>
         </>
@@ -28,10 +29,12 @@ function TemporaryIconPlaceholder() {
     )
 }
 
-function SidebarTab({ onClick, Icon, children }) {
+function SidebarTab({ onClick, icon, children }) {
+    const IconComponent = icon;
+
     return (
         <div className={styles["sidebarTab"]} onClick={onClick}>
-            <Icon />
+            {IconComponent ? <IconComponent /> : null}
             {children}
         </div>
     )

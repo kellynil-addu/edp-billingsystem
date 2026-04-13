@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import styles from "./RecentTransactionsList.module.css";
 import { AppContext } from "../App";
 
@@ -13,21 +13,27 @@ export function RecentTransactionsList() {
     const getPropertyName = (property) => `${property.area} - Blk. ${property.blockNumber} Lot ${property.lotNumber}`;
 
     const getRecentPayments = () => {
-            const out = Object.values(data.clients).flatMap(client => {
-                return client.propertyIds.map(i => data.properties[i]).flatMap(property => {
-                    return property.account.paymentIds.map(i => data.payments[i]).flatMap(payment => {
+            const out = Object.values(data.properties).flatMap(property => {
+                const owner = Object.values(data.clients).find(client => client.propertyIds.includes(property.id));
+                const uniquePaymentIds = Array.from(new Set(property.account?.paymentIds || []));
+
+                return uniquePaymentIds
+                    .map(i => data.payments[i])
+                    .filter(Boolean)
+                    .map(payment => {
+                        const paymentClient = data.clients[payment.clientId] || owner;
+
                         return {
                             paymentId: payment.id,
-                            clientName: client.fullName,
+                            clientName: paymentClient ? paymentClient.fullName : "Unassigned",
                             date: payment.paymentDate,
                             propertyName: getPropertyName(property),
                             amount: payment.amount,
-                            clientId: client.id,
+                            clientId: paymentClient ? paymentClient.id : null,
                             propertyLotId: property.id
                         }
-                    })
-                });
-            })
+                    });
+            });
 
             out.sort((a, b) => b.date - a.date);
     
@@ -50,7 +56,7 @@ export function RecentTransactionsList() {
             <tbody>
                 {
                     recentPayments.map(pym => (
-                        <tr>
+                        <tr key={String(pym.paymentId)}>
                             <td>{pym.paymentId}</td>
                             <td>{pym.clientName}</td>
                             <td>{new Date(pym.date).toLocaleString()}</td>
