@@ -11,7 +11,6 @@ export default function ClientsRecordList() {
         return out;
     }, [data.clients]);
 
-    // Intentionally no-op for now; detail implementation is handled by a separate teammate.
     const handleView = (clientId) => {
         setCurrentPage({ name: "viewClient", params: { clientId } });
     };
