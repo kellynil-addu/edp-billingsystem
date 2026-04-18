@@ -9,7 +9,7 @@ export function PropertiesRecordList() {
     const getPropertyName = (property) => `${property.area} - Blk. ${property.blockNumber} Lot ${property.lotNumber}`;
 
     const getOwnerName = (propertyId) => {
-        const owner = Object.values(data.clients).find(client => client.propertyIds.includes(propertyId));
+        const owner = Object.values(data.clients).find(client => client.propertyIds?.includes(propertyId));
         return owner ? owner.fullName : "Unassigned";
     };
 
@@ -34,7 +34,9 @@ export function PropertiesRecordList() {
     const properties = getProperties();
 
     // Intentionally no-op for now; detail implementation is handled by a separate teammate.
-    const handleView = () => {};
+    const handleView = (propertyId) => {
+        setCurrentPage({ name: "viewProperty", params: { propertyId } });
+    };
 
     const handleEdit = (propertyId) => {
         setCurrentPage({ name: "editProperty", params: { propertyId } });

@@ -11,8 +11,9 @@ export default function ClientsRecordList() {
         return out;
     }, [data.clients]);
 
-    // Intentionally no-op for now; detail implementation is handled by a separate teammate.
-    const handleView = () => {};
+    const handleView = (clientId) => {
+        setCurrentPage({ name: "viewClient", params: { clientId } });
+    };
 
     const handleEdit = (clientId) => {
         setCurrentPage({ name: "editClient", params: { clientId } });
@@ -47,9 +48,10 @@ export default function ClientsRecordList() {
                         <TableCell>{client.id}</TableCell>
                         <TableCell>{client.fullName}</TableCell>
                         <TableCell>{client.address}</TableCell>
-                        <TableCell>{client.propertyIds?.length || 0}</TableCell>
+                        <TableCell>{client.propertyIds?.length || 0}
+                        </TableCell>
                         <TableCell>
-                            <button onClick={handleView} style={{ padding: "0.35rem 0.65rem" }}>View</button>
+                            <button onClick={() => handleView(client.id)} style={{ padding: "0.35rem 0.65rem" }}>View</button>
                             <button onClick={() => handleEdit(client.id)} style={{ padding: "0.35rem 0.65rem", marginLeft: "0.4rem" }}>Edit</button>
                             <button onClick={() => handleDelete(client.id)} style={{ padding: "0.35rem 0.65rem", marginLeft: "0.4rem" }}>Delete</button>
                         </TableCell>

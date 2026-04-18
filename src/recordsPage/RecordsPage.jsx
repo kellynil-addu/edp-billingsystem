@@ -41,7 +41,9 @@ export default function RecordsPage() {
     }, [data]);
 
     // Intentionally no-op for now; detail implementation is handled by a separate teammate.
-    const handleView = () => {};
+    const handleView = (paymentId) => {
+        setCurrentPage({ name: "viewPayment", params: { paymentId } });
+    };
 
     const handleCreate = () => {
         setCurrentPage({ name: 'createPayment', params: {} });
