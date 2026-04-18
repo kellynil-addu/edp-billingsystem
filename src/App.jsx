@@ -15,6 +15,9 @@ import EditPropertyForm from './propertiesPage/EditPropertyForm';
 import ClientsPage from './clientsPage/ClientsPage';
 import CreateClientForm from './clientsPage/CreateClientForm';
 import EditClientForm from './clientsPage/EditClientForm';
+import ViewClientForm from './clientsPage/ViewClientForm';
+import ViewPropertyForm from './propertiesPage/ViewPropertyForm';
+import ViewPaymentForm from './recordsPage/ViewPaymentForm';
 
 /**
  * @typedef {Object} AppContextValue
@@ -46,12 +49,18 @@ export default function App() {
                 return <RecordsPage />;
             case 'paymentDetail':
                 return <PaymentDetail paymentId={currentPage.params.paymentId} />;
+            case 'viewPayment':
+                return <ViewPaymentForm paymentId={currentPage.params.paymentId} />;
             case 'createClient':
                 return <CreateClientForm />;
+            case 'viewClient':    
+                return <ViewClientForm clientId={currentPage.params.clientId} />;
             case 'editClient':
                 return <EditClientForm clientId={currentPage.params.clientId} />;
             case 'createPayment':
                 return <CreatePaymentForm />;
+            case 'viewProperty':
+                return <ViewPropertyForm propertyId={currentPage.params.propertyId} />;
             case 'createProperty':
                 return <CreatePropertyForm />;
             case 'propertyDetail':
