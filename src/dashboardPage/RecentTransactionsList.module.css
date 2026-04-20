@@ -1,0 +1,14 @@
+table.recentTransactionsTable {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: var(--primary-background);
+        font-weight: bold;
+    }
+
+    td {
+        margin: 0px;
+        padding: 8px;
+    }
+}
