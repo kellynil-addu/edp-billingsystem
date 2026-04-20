@@ -51,8 +51,8 @@ export function PropertiesRecordList() {
     };
 
     return (
-        <table className={"w-full border-collapse"}>
-            <thead className="bg-indigo-100 font-bold">
+        <table className="data-table">
+            <thead>
                 <tr>
                     <TableCell>ID</TableCell>
                     <TableCell>Property</TableCell>
@@ -80,9 +80,11 @@ export function PropertiesRecordList() {
                             <TableCell>{p.pricePerSqm}</TableCell>
                             <TableCell>{p.totalPrice}</TableCell>
                             <TableCell>
-                                <button onClick={() => handleView(p.id)} style={{ padding: "0.35rem 0.65rem" }}>View</button>
-                                <button onClick={() => handleEdit(p.id)} style={{ padding: "0.35rem 0.65rem", marginLeft: "0.4rem" }}>Edit</button>
-                                <button onClick={() => handleDelete(p.id)} style={{ padding: "0.35rem 0.65rem", marginLeft: "0.4rem" }}>Delete</button>
+                                <div className="ui-button-row">
+                                    <button className="btn-sm btn-ghost" onClick={() => handleView(p.id)}>View</button>
+                                    <button className="btn-sm btn-ghost" onClick={() => handleEdit(p.id)}>Edit</button>
+                                    <button className="btn-sm btn-danger" onClick={() => handleDelete(p.id)}>Delete</button>
+                                </div>
                             </TableCell>
                         </tr>
                     ))

@@ -28,8 +28,8 @@ export default function ClientsRecordList() {
     };
 
     return (
-        <table className={"w-full border-collapse"}>
-            <thead className="bg-indigo-100 font-bold">
+        <table className="data-table">
+            <thead>
                 <tr>
                     <TableCell>ID</TableCell>
                     <TableCell>Full Name</TableCell>
@@ -51,9 +51,11 @@ export default function ClientsRecordList() {
                         <TableCell>{client.propertyIds?.length || 0}
                         </TableCell>
                         <TableCell>
-                            <button onClick={() => handleView(client.id)} style={{ padding: "0.35rem 0.65rem" }}>View</button>
-                            <button onClick={() => handleEdit(client.id)} style={{ padding: "0.35rem 0.65rem", marginLeft: "0.4rem" }}>Edit</button>
-                            <button onClick={() => handleDelete(client.id)} style={{ padding: "0.35rem 0.65rem", marginLeft: "0.4rem" }}>Delete</button>
+                            <div className="ui-button-row">
+                                <button className="btn-sm btn-ghost" onClick={() => handleView(client.id)}>View</button>
+                                <button className="btn-sm btn-ghost" onClick={() => handleEdit(client.id)}>Edit</button>
+                                <button className="btn-sm btn-danger" onClick={() => handleDelete(client.id)}>Delete</button>
+                            </div>
                         </TableCell>
                     </tr>
                 ))}

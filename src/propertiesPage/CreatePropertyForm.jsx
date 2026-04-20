@@ -90,8 +90,8 @@ export default function CreatePropertyForm() {
     return (
         <>
             <ContentHeader>
-                <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
-                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>Create Property</span>
+                <div className="ui-page-header">
+                    <span className="ui-page-title">Create Property</span>
                 </div>
             </ContentHeader>
 
@@ -99,80 +99,75 @@ export default function CreatePropertyForm() {
                 <Card>
                     <h3>New Property Record</h3>
 
-                    <form onSubmit={handleSubmit} style={{ display: "grid", gap: "0.85rem", maxWidth: "700px", marginTop: "0.75rem" }}>
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Area</span>
+                    <form onSubmit={handleSubmit} className="ui-form" style={{ maxWidth: "700px" }}>
+                            <label className="ui-field">
+                                <span>Area</span>
                                 <input
                                     type="text"
                                     value={area}
                                     onChange={(event) => setArea(event.target.value)}
                                     placeholder="e.g. San Vic area"
-                                    style={{ padding: "0.55rem" }}
                                 />
-                                {errors.area && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.area}</span>}
+                                {errors.area && <span className="ui-error">{errors.area}</span>}
                             </label>
 
-                            <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
-                                <label style={{ display: "grid", gap: "0.35rem" }}>
-                                    <span style={{ fontWeight: "bold" }}>Block Number</span>
+                            <div className="ui-two-col">
+                                <label className="ui-field">
+                                    <span>Block Number</span>
                                     <input
                                         type="number"
                                         min="1"
                                         step="1"
                                         value={blockNumber}
                                         onChange={(event) => setBlockNumber(event.target.value)}
-                                        style={{ padding: "0.55rem" }}
                                     />
-                                    {errors.blockNumber && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.blockNumber}</span>}
+                                    {errors.blockNumber && <span className="ui-error">{errors.blockNumber}</span>}
                                 </label>
 
-                                <label style={{ display: "grid", gap: "0.35rem" }}>
-                                    <span style={{ fontWeight: "bold" }}>Lot Number</span>
+                                <label className="ui-field">
+                                    <span>Lot Number</span>
                                     <input
                                         type="number"
                                         min="1"
                                         step="1"
                                         value={lotNumber}
                                         onChange={(event) => setLotNumber(event.target.value)}
-                                        style={{ padding: "0.55rem" }}
                                     />
-                                    {errors.lotNumber && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.lotNumber}</span>}
+                                    {errors.lotNumber && <span className="ui-error">{errors.lotNumber}</span>}
                                 </label>
                             </div>
 
-                            <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
-                                <label style={{ display: "grid", gap: "0.35rem" }}>
-                                    <span style={{ fontWeight: "bold" }}>Area in sqm</span>
+                            <div className="ui-two-col">
+                                <label className="ui-field">
+                                    <span>Area in sqm</span>
                                     <input
                                         type="number"
                                         min="0.01"
                                         step="0.01"
                                         value={areaInSqm}
                                         onChange={(event) => setAreaInSqm(event.target.value)}
-                                        style={{ padding: "0.55rem" }}
                                     />
-                                    {errors.areaInSqm && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.areaInSqm}</span>}
+                                    {errors.areaInSqm && <span className="ui-error">{errors.areaInSqm}</span>}
                                 </label>
 
-                                <label style={{ display: "grid", gap: "0.35rem" }}>
-                                    <span style={{ fontWeight: "bold" }}>Price per sqm</span>
+                                <label className="ui-field">
+                                    <span>Price per sqm</span>
                                     <input
                                         type="number"
                                         min="0.01"
                                         step="0.01"
                                         value={pricePerSqm}
                                         onChange={(event) => setPricePerSqm(event.target.value)}
-                                        style={{ padding: "0.55rem" }}
                                     />
-                                    {errors.pricePerSqm && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.pricePerSqm}</span>}
+                                    {errors.pricePerSqm && <span className="ui-error">{errors.pricePerSqm}</span>}
                                 </label>
                             </div>
 
-                            <div style={{ display: "flex", gap: "0.6rem", marginTop: "0.4rem" }}>
-                                <button type="button" onClick={handleCancel} style={{ padding: "0.55rem 0.9rem" }}>
+                            <div className="ui-form-actions">
+                                <button className="btn-ghost" type="button" onClick={handleCancel}>
                                     Cancel
                                 </button>
-                                <button type="submit" style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
+                                <button className="btn-primary" type="submit">
                                     Save Property
                                 </button>
                             </div>

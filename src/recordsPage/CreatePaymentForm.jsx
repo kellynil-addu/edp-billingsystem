@@ -151,8 +151,8 @@ export default function CreatePaymentForm() {
     return (
         <>
             <ContentHeader>
-                <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
-                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>Create Payment</span>
+                <div className="ui-page-header">
+                    <span className="ui-page-title">Create Payment</span>
                 </div>
             </ContentHeader>
 
@@ -167,26 +167,25 @@ export default function CreatePaymentForm() {
                                     ? "No payable properties found. Choose a property that is not fully paid."
                                     : "No properties found. Add a property first before creating a payment."}
                             </p>
-                            <div style={{ display: "flex", gap: "0.6rem" }}>
-                                <button onClick={handleGoToClients} style={{ padding: "0.5rem 0.9rem" }}>
+                            <div className="ui-button-row">
+                                <button className="btn-ghost" onClick={handleGoToClients}>
                                     Go to Clients
                                 </button>
-                                <button onClick={handleGoToCreateProperty} style={{ padding: "0.5rem 0.9rem", fontWeight: "bold" }}>
+                                <button className="btn-primary" onClick={handleGoToCreateProperty}>
                                     Go to Properties
                                 </button>
-                                <button onClick={handleCancel} style={{ padding: "0.5rem 0.9rem" }}>
+                                <button className="btn-ghost" onClick={handleCancel}>
                                     Back to Payments
                                 </button>
                             </div>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "0.85rem", maxWidth: "640px", marginTop: "0.75rem" }}>
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Property</span>
+                        <form onSubmit={handleSubmit} className="ui-form" style={{ maxWidth: "640px" }}>
+                            <label className="ui-field">
+                                <span>Property</span>
                                 <select
                                     value={propertyId}
                                     onChange={(event) => setPropertyId(event.target.value)}
-                                    style={{ padding: "0.55rem" }}
                                 >
                                     <option value="">Select a property</option>
                                     {propertyOptions.map(option => (
@@ -195,15 +194,14 @@ export default function CreatePaymentForm() {
                                         </option>
                                     ))}
                                 </select>
-                                {errors.propertyId && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.propertyId}</span>}
+                                {errors.propertyId && <span className="ui-error">{errors.propertyId}</span>}
                             </label>
 
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Client</span>
+                            <label className="ui-field">
+                                <span>Client</span>
                                 <select
                                     value={selectedClientValue}
                                     onChange={(event) => setClientId(event.target.value)}
-                                    style={{ padding: "0.55rem" }}
                                     disabled={Boolean(isClientLocked)}
                                 >
                                     <option value="">Select a client</option>
@@ -213,15 +211,15 @@ export default function CreatePaymentForm() {
                                         </option>
                                     ))}
                                 </select>
-                                {isClientLocked && <span style={{ color: "#555", fontSize: "0.9rem" }}>This property already has an installment buyer.</span>}
-                                {!isClientLocked && clientOptions.length === 0 && <span style={{ color: "#555", fontSize: "0.9rem" }}>No clients found. Create one from the Clients page.</span>}
-                                {errors.clientId && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.clientId}</span>}
+                                {isClientLocked && <span className="ui-help">This property already has an installment buyer.</span>}
+                                {!isClientLocked && clientOptions.length === 0 && <span className="ui-help">No clients found. Create one from the Clients page.</span>}
+                                {errors.clientId && <span className="ui-error">{errors.clientId}</span>}
                             </label>
 
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Payment Type</span>
-                                <div style={{ display: "flex", gap: "1rem" }}>
-                                    <label style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                            <label className="ui-field">
+                                <span>Payment Type</span>
+                                <div className="ui-radio-row">
+                                    <label className="ui-radio-label">
                                         <input
                                             type="radio"
                                             name="paymentType"
@@ -231,7 +229,7 @@ export default function CreatePaymentForm() {
                                         />
                                         Partial
                                     </label>
-                                    <label style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                                    <label className="ui-radio-label">
                                         <input
                                             type="radio"
                                             name="paymentType"
@@ -244,24 +242,22 @@ export default function CreatePaymentForm() {
                                 </div>
                             </label>
 
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Remaining Balance</span>
+                            <label className="ui-field">
+                                <span>Remaining Balance</span>
                                 <input
                                     type="text"
                                     value={selectedRemainingBalance > 0 ? selectedRemainingBalance : "-"}
                                     readOnly
-                                    style={{ padding: "0.55rem", backgroundColor: "#f3f3f3" }}
                                 />
                             </label>
 
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Amount</span>
+                            <label className="ui-field">
+                                <span>Amount</span>
                                 {paymentType === "full" ? (
                                     <input
                                         type="text"
                                         value={fullPaymentAmountValue || "-"}
                                         readOnly
-                                        style={{ padding: "0.55rem", backgroundColor: "#f3f3f3" }}
                                     />
                                 ) : (
                                     <input
@@ -272,30 +268,28 @@ export default function CreatePaymentForm() {
                                         value={amount}
                                         onChange={(event) => setAmount(event.target.value)}
                                         placeholder="e.g. 5000"
-                                        style={{ padding: "0.55rem" }}
                                     />
                                 )}
-                                {errors.amount && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.amount}</span>}
+                                {errors.amount && <span className="ui-error">{errors.amount}</span>}
                             </label>
 
-                            <label style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Payment Date</span>
+                            <label className="ui-field">
+                                <span>Payment Date</span>
                                 <input
                                     type="date"
                                     value={paymentDate}
                                     onChange={(event) => setPaymentDate(event.target.value)}
-                                    style={{ padding: "0.55rem" }}
                                 />
-                                {errors.paymentDate && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.paymentDate}</span>}
+                                {errors.paymentDate && <span className="ui-error">{errors.paymentDate}</span>}
                             </label>
 
-                            {submitError && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{submitError}</span>}
+                            {submitError && <span className="ui-error">{submitError}</span>}
 
-                            <div style={{ display: "flex", gap: "0.6rem", marginTop: "0.4rem" }}>
-                                <button type="button" onClick={handleCancel} style={{ padding: "0.55rem 0.9rem" }}>
+                            <div className="ui-form-actions">
+                                <button className="btn-ghost" type="button" onClick={handleCancel}>
                                     Cancel
                                 </button>
-                                <button type="submit" disabled={isSubmitting} style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
+                                <button className="btn-primary" type="submit" disabled={isSubmitting}>
                                     {isSubmitting ? "Saving..." : "Save Payment"}
                                 </button>
                             </div>

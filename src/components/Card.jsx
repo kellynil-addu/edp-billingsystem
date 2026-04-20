@@ -1,16 +1,6 @@
-export default function Card({children, style}) {
-    const styles = {
-        backgroundColor: "#FFFFFF",
-        borderRadius: "12px",
-        padding: "12px",
-        boxSizing: "border-box",
-        minHeight: "100%",
-        width: "100%",
-        ...style
-    }
-    
+export default function Card({ children, style, className = "" }) {
     return (
-        <div style={styles}>
+        <div className={`app-card ${className}`.trim()} style={style}>
             {children}
         </div>
     )

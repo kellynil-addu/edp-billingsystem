@@ -180,7 +180,7 @@ class AppData {
             ...propertyData,
             account: {
                 status: "active",
-                totalPrice: total,
+                totalPrice: Number(propertyData.total ?? 0),
                 termStart: new Date().setHours(0,0,0,0),
                 termDuration: 24,
                 downPayment: 0,

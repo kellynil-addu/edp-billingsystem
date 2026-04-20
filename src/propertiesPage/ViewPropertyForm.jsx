@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../App";
 import Card from "../components/Card";
 import ContentHeader from "../components/ContentHeader";
@@ -15,14 +15,14 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
         return (
             <>
                 <ContentHeader>
-                    <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
-                        <span style={{ fontSize: "20px", fontWeight: "bold" }}>View Property</span>
+                    <div className="ui-page-header">
+                        <span className="ui-page-title">View Property</span>
                     </div>
                 </ContentHeader>
                 <ContentMain>
                     <Card>
                         <h3>Property not found</h3>
-                        <button onClick={() => setCurrentPage({ name: "properties", params: {} })} style={{ padding: "0.5rem 0.9rem", fontWeight: "bold" }}>
+                        <button className="btn-primary" onClick={() => setCurrentPage({ name: "properties", params: {} })}>
                             Back to Properties
                         </button>
                     </Card>
@@ -36,20 +36,20 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
     const totalPaid = uniquePaymentIds.reduce((sum, id) => sum + (data.payments[id]?.amount || 0), 0);
     const remainingBalance = totalPrice - totalPaid;
     
-    const ownerEntry = Object.entries(data.clients).find(([_, client]) => client.propertyIds?.includes(propertyId));
+    const ownerEntry = Object.entries(data.clients).find((entry) => entry[1].propertyIds?.includes(propertyId));
     const owner = ownerEntry ? ownerEntry[1] : null;
     const ownerId = ownerEntry ? Number(ownerEntry[0]) : null;
 
     return (
         <>
             <ContentHeader>
-                <div style={{ display: "flex", padding: "1rem", alignItems: "center", justifyContent: "space-between", width: "100%"}}>
-                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>View Property</span>
-                    <div style={{ display: "flex", gap: "0.6rem" }}>
-                        <button onClick={() => setCurrentPage({ name: "editProperty", params: { propertyId } })} style={{ padding: "0.5rem 0.9rem", fontWeight: "bold" }}>
+                <div className="ui-page-header">
+                    <span className="ui-page-title">View Property</span>
+                    <div className="ui-button-row">
+                        <button className="btn-primary" onClick={() => setCurrentPage({ name: "editProperty", params: { propertyId } })}>
                             Edit
                         </button>
-                        <button onClick={() => setCurrentPage(clientId ? { name: "viewClient", params: { clientId } } : { name: "properties", params: {} })} style={{ padding: "0.5rem 0.9rem" }}>
+                        <button className="btn-ghost" onClick={() => setCurrentPage(clientId ? { name: "viewClient", params: { clientId } } : { name: "properties", params: {} })}>
                             {clientId ? "Back to Client's Details" : "Back to Properties"}
                         </button>
                     </div>
@@ -60,66 +60,66 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
                 <Card>
                     <h3>Property Details</h3>
 
-                    <div style={{ display: "grid", gap: "0.85rem", maxWidth: "700px", marginTop: "0.75rem" }}>
-                        <div style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Area</span>
+                    <div className="ui-detail-grid">
+                        <div className="ui-field">
+                            <span>Area</span>
                             <span>{property.area}</span>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Block Number</span>
+                        <div className="ui-two-col">
+                            <div className="ui-field">
+                                <span>Block Number</span>
                                 <span>{property.blockNumber}</span>
                             </div>
 
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Lot Number</span>
+                            <div className="ui-field">
+                                <span>Lot Number</span>
                                 <span>{property.lotNumber}</span>
                             </div>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Area in sqm</span>
+                        <div className="ui-two-col">
+                            <div className="ui-field">
+                                <span>Area in sqm</span>
                                 <span>{property.areaInSqm}</span>
                             </div>
 
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Price per sqm</span>
+                            <div className="ui-field">
+                                <span>Price per sqm</span>
                                 <span>{property.pricePerSqm}</span>
                             </div>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Total Price</span>
+                        <div className="ui-two-col">
+                            <div className="ui-field">
+                                <span>Total Price</span>
                                 <span>{totalPrice}</span>
                             </div>
 
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Status</span>
+                            <div className="ui-field">
+                                <span>Status</span>
                                 <span>{property.account?.status || 'available'}</span>
                             </div>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Owner</span>
+                        <div className="ui-field">
+                            <span>Owner</span>
                             <button 
+                                className="btn-link"
                                 onClick={() => ownerId && setCurrentPage({ name: "viewClient", params: { clientId: ownerId, propertyId } })}
-                                style={{ background: "none", border: "none", cursor: "pointer", color: "#0066cc", textAlign: "left", padding: 0, fontWeight: owner ? "bold" : "normal" }}
                             >
                                 {owner ? owner.fullName : 'Unassigned'}
                             </button>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Total Paid</span>
+                        <div className="ui-two-col">
+                            <div className="ui-field">
+                                <span>Total Paid</span>
                                 <span>{totalPaid}</span>
                             </div>
 
-                            <div style={{ display: "grid", gap: "0.35rem" }}>
-                                <span style={{ fontWeight: "bold" }}>Remaining Balance</span>
+                            <div className="ui-field">
+                                <span>Remaining Balance</span>
                                 <span>{remainingBalance}</span>
                             </div>
                         </div>
@@ -128,12 +128,12 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
                     {uniquePaymentIds.length > 0 && (
                         <div style={{ marginTop: "1.5rem" }}>
                             <h4 style={{ fontWeight: "bold", marginBottom: "0.75rem" }}>Payment History</h4>
-                            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
+                            <table className="data-table" style={{ fontSize: "0.9rem" }}>
                                 <thead>
-                                    <tr style={{ backgroundColor: "#f0f0f0", borderBottom: "1px solid #ddd" }}>
-                                        <th style={{ padding: "0.5rem", textAlign: "left", fontWeight: "bold" }}>Date</th>
-                                        <th style={{ padding: "0.5rem", textAlign: "left", fontWeight: "bold" }}>Time</th>
-                                        <th style={{ padding: "0.5rem", textAlign: "left", fontWeight: "bold" }}>Amount</th>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,10 +144,10 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
                                         const paymentDate = new Date(payment.paymentDate);
                                         const time = paymentDate.toLocaleTimeString();
                                         return (
-                                            <tr key={paymentId} style={{ borderBottom: "1px solid #ddd" }}>
-                                                <td style={{ padding: "0.5rem" }}>{paymentDate.toLocaleDateString()}</td>
-                                                <td style={{ padding: "0.5rem" }}>{time}</td>
-                                                <td style={{ padding: "0.5rem" }}>{payment.amount}</td>
+                                            <tr key={paymentId}>
+                                                <td>{paymentDate.toLocaleDateString()}</td>
+                                                <td>{time}</td>
+                                                <td>{payment.amount}</td>
                                             </tr>
                                         );
                                     })}
@@ -156,8 +156,8 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
                         </div>
                     )}
 
-                    <div style={{ display: "flex", gap: "0.6rem", marginTop: "1.5rem" }}>
-                        <button onClick={() => setCurrentPage({ name: "properties", params: {} })} style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
+                    <div className="ui-form-actions" style={{ marginTop: "1.5rem" }}>
+                        <button className="btn-ghost" onClick={() => setCurrentPage({ name: "properties", params: {} })}>
                             Back to Properties
                         </button>
                     </div>

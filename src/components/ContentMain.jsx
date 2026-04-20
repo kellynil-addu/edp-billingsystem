@@ -1,6 +1,6 @@
 export default function ContentMain({children}) {
     return (
-        <div style={{height: "100%", overflow: "auto", padding: "2rem"}}>
+        <div className="content-main">
             {children}
         </div>
     )

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../App";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";

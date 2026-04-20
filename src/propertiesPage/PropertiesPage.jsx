@@ -15,9 +15,9 @@ export default function PropertiesPage() {
     return (
         <>
         <ContentHeader>
-            <div style={{display: "flex", padding: "1rem", alignItems: "center", justifyContent: "space-between", width: "100%"}}>
-                <span style={{fontSize: "20px", fontWeight: "bold"}}> Properties </span>
-                <button onClick={handleCreateProperty} style={{ padding: "0.5rem 0.9rem", fontWeight: "bold" }}>New Property</button>
+            <div className="ui-page-header">
+                <span className="ui-page-title">Properties</span>
+                <button className="btn-primary btn-page-action" onClick={handleCreateProperty}>New Property</button>
             </div>
         </ContentHeader>
         <ContentMain>

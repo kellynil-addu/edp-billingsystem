@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../App";
 import Card from "../components/Card";
 import ContentHeader from "../components/ContentHeader";
@@ -15,14 +15,14 @@ export default function ViewClientForm({ clientId: propClientId }) {
         return (
             <>
                 <ContentHeader>
-                    <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
-                        <span style={{ fontSize: "20px", fontWeight: "bold" }}>View Client</span>
+                    <div className="ui-page-header">
+                        <span className="ui-page-title">View Client</span>
                     </div>
                 </ContentHeader>
                 <ContentMain>
                     <Card>
                         <h3>Client not found</h3>
-                        <button onClick={() => setCurrentPage({ name: "clients", params: {} })} style={{ padding: "0.5rem 0.9rem", fontWeight: "bold" }}>
+                        <button className="btn-primary" onClick={() => setCurrentPage({ name: "clients", params: {} })}>
                             Back to Clients
                         </button>
                     </Card>
@@ -34,8 +34,8 @@ export default function ViewClientForm({ clientId: propClientId }) {
     return (
         <>
             <ContentHeader>
-                <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
-                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>View Client</span>
+                <div className="ui-page-header">
+                    <span className="ui-page-title">View Client</span>
                 </div>
             </ContentHeader>
 
@@ -43,19 +43,19 @@ export default function ViewClientForm({ clientId: propClientId }) {
                 <Card>
                     <h3>Client Details</h3>
 
-                    <div style={{ display: "grid", gap: "0.85rem", maxWidth: "640px", marginTop: "0.75rem" }}>
-                        <div style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Full Name</span>
+                    <div className="ui-detail-grid" style={{ maxWidth: "640px" }}>
+                        <div className="ui-field">
+                            <span>Full Name</span>
                             <span>{client.fullName}</span>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Address</span>
+                        <div className="ui-field">
+                            <span>Address</span>
                             <span>{client.address}</span>
                         </div>
 
-                        <div style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Properties Owned</span>
+                        <div className="ui-field">
+                            <span>Properties Owned</span>
                             <span>{client.propertyIds?.length || 0}</span>
                         </div>
                     </div>
@@ -77,10 +77,10 @@ export default function ViewClientForm({ clientId: propClientId }) {
                                     const remainingBalance = totalPrice - totalPaid;
 
                                     return (
-                                        <div key={propertyId} style={{ border: "1px solid #ddd", padding: "0.75rem", borderRadius: "0.25rem" }}>
+                                        <div key={propertyId} className="ui-panel">
                                             <button
+                                                className="btn-link"
                                                 onClick={() => setCurrentPage({ name: "viewProperty", params: { propertyId, clientId } })}
-                                                style={{ fontWeight: "bold", background: "none", border: "none", cursor: "pointer", color: "#0066cc", textAlign: "left", padding: 0 }}
                                             >
                                                 {property.area} - Block {property.blockNumber} Lot {property.lotNumber}
 
@@ -100,8 +100,8 @@ export default function ViewClientForm({ clientId: propClientId }) {
                         </div>
                     )}
 
-                    <div style={{ display: "flex", gap: "0.6rem", marginTop: "1.5rem" }}>
-                        <button onClick={() => propertyId ? setCurrentPage({ name: "viewProperty", params: { propertyId } }) : setCurrentPage({ name: "clients", params: {} })} style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
+                    <div className="ui-form-actions" style={{ marginTop: "1.5rem" }}>
+                        <button className="btn-ghost" onClick={() => propertyId ? setCurrentPage({ name: "viewProperty", params: { propertyId } }) : setCurrentPage({ name: "clients", params: {} })}>
                             {propertyId ? "Back to Property Details" : "Back to Clients"}
                         </button>
                     </div>

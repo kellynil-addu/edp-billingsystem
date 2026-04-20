@@ -75,7 +75,7 @@ export default function App() {
     return (
             <AppContext.Provider value={{data, session, currentPage, setCurrentPage}}>
                 <LoginGuard>
-                    <div style={{display: "flex", alignItems: "stretch", height: "100vh", width: "100vw", maxHeight: "100vh"}}>
+                    <div className="app-shell">
                             {currentPage.name !== "login" && <Sidebar/>}
                             <Content>
                                 {pageToRender()}

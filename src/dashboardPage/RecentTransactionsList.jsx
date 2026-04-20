@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import styles from "./RecentTransactionsList.module.css";
 import { AppContext } from "../App";
 
 export function RecentTransactionsList() {
@@ -43,14 +42,14 @@ export function RecentTransactionsList() {
     const recentPayments = getRecentPayments();
 
     return (
-        <table className={styles["recentTransactionsTable"]}>
+        <table className="data-table">
             <thead>
                 <tr>
-                    <td>ID</td>
-                    <td>Client</td>
-                    <td>Date</td>
-                    <td>Property</td>
-                    <td>Amount</td>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Date</th>
+                    <th>Property</th>
+                    <th style={{ textAlign: "right" }}>Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +60,7 @@ export function RecentTransactionsList() {
                             <td>{pym.clientName}</td>
                             <td>{new Date(pym.date).toLocaleString()}</td>
                             <td>{pym.propertyName}</td>
-                            <td>{pym.amount}</td>
+                            <td style={{ textAlign: "right" }}>{pym.amount}</td>
                         </tr>
                     ))
                 }

@@ -48,13 +48,13 @@ export default function RecordList({ records = [], recordType = "records", loadi
     const handleView = (id) => {
         if (typeof onView === "function") return onView(id);
         // Default behavior: route to /view/[type]/[id]
-        window.location.href = `/view/${recordType}/${id}`;
+        window.location.assign(`/view/${recordType}/${id}`);
     };
 
     const handleEdit = (id) => {
         if (typeof onEdit === "function") return onEdit(id);
         // Default behavior: route to /edit/[type]/[id]
-        window.location.href = `/edit/${recordType}/${id}`;
+        window.location.assign(`/edit/${recordType}/${id}`);
     };
 
     const handleDelete = (id) => {
@@ -88,31 +88,33 @@ export default function RecordList({ records = [], recordType = "records", loadi
                 ) : records.length === 0 ? (
                     <div style={{ padding: "1rem", color: "#666" }}>No {recordType} found.</div>
                 ) : (
-                    <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "8px" }}>
-                        <thead style={{ backgroundColor: "var(--primary-background)", fontWeight: "bold" }}>
+                    <table className="data-table" style={{ marginTop: "8px" }}>
+                        <thead>
                             <tr>
-                                <th style={{ textAlign: "left", padding: "8px" }}>ID</th>
-                                <th style={{ textAlign: "left", padding: "8px" }}>Client</th>
-                                <th style={{ textAlign: "left", padding: "8px" }}>Date</th>
-                                <th style={{ textAlign: "left", padding: "8px" }}>Property</th>
-                                <th style={{ textAlign: "right", padding: "8px" }}>Amount</th>
-                                <th style={{ textAlign: "center", padding: "8px" }}>Actions</th>
+                                <th>ID</th>
+                                <th>Client</th>
+                                <th>Date</th>
+                                <th>Property</th>
+                                <th style={{ textAlign: "right" }}>Amount</th>
+                                <th style={{ textAlign: "center" }}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {records.map((rec, idx) => {
                                 const id = rec.id ?? idx;
                                 return (
-                                    <tr key={String(id)} style={{ borderBottom: "1px solid #eee" }}>
-                                        <td style={{ padding: "8px" }}>{rec.id}</td>
-                                        <td style={{ padding: "8px" }}>{rec.clientName}</td>
-                                        <td style={{ padding: "8px" }}>{rec.date ? new Date(rec.date).toLocaleString() : ""}</td>
-                                        <td style={{ padding: "8px" }}>{rec.propertyName}</td>
-                                        <td style={{ padding: "8px", textAlign: "right" }}>{rec.amount}</td>
-                                        <td style={{ padding: "8px", textAlign: "center" }}>
-                                            <button onClick={() => handleView(id)} aria-label={`View ${id}`} style={{ padding: "6px 10px" }}>View</button>
-                                            {onEdit && <button onClick={() => handleEdit(id)} aria-label={`Edit ${id}`} style={{ padding: "6px 10px", marginLeft: 8 }}>Edit</button>}
-                                            {onDelete && <button onClick={() => handleDelete(id)} aria-label={`Delete ${id}`} style={{ padding: "6px 10px", marginLeft: 8 }}>Delete</button>}
+                                    <tr key={String(id)}>
+                                        <td>{rec.id}</td>
+                                        <td>{rec.clientName}</td>
+                                        <td>{rec.date ? new Date(rec.date).toLocaleString() : ""}</td>
+                                        <td>{rec.propertyName}</td>
+                                        <td style={{ textAlign: "right" }}>{rec.amount}</td>
+                                        <td>
+                                            <div className="ui-button-row" style={{ justifyContent: "center" }}>
+                                                <button className="btn-sm btn-ghost" onClick={() => handleView(id)} aria-label={`View ${id}`}>View</button>
+                                                {onEdit && <button className="btn-sm btn-ghost" onClick={() => handleEdit(id)} aria-label={`Edit ${id}`}>Edit</button>}
+                                                {onDelete && <button className="btn-sm btn-danger" onClick={() => handleDelete(id)} aria-label={`Delete ${id}`}>Delete</button>}
+                                            </div>
                                         </td>
                                     </tr>
                                 );
@@ -153,9 +155,9 @@ export default function RecordList({ records = [], recordType = "records", loadi
                             </div>
 
                             <div style={actionsStyle}>
-                                <button onClick={() => handleView(id)} aria-label={`View ${id}`} style={{ padding: "6px 10px" }}>View</button>
-                                {onEdit && <button onClick={() => handleEdit(id)} aria-label={`Edit ${id}`} style={{ padding: "6px 10px" }}>Edit</button>}
-                                {onDelete && <button onClick={() => handleDelete(id)} aria-label={`Delete ${id}`} style={{ padding: "6px 10px" }}>Delete</button>}
+                                <button className="btn-sm btn-ghost" onClick={() => handleView(id)} aria-label={`View ${id}`}>View</button>
+                                {onEdit && <button className="btn-sm btn-ghost" onClick={() => handleEdit(id)} aria-label={`Edit ${id}`}>Edit</button>}
+                                {onDelete && <button className="btn-sm btn-danger" onClick={() => handleDelete(id)} aria-label={`Delete ${id}`}>Delete</button>}
                             </div>
                         </div>
                     );

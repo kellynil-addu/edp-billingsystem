@@ -50,8 +50,8 @@ export default function CreateClientForm() {
     return (
         <>
             <ContentHeader>
-                <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
-                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>Create Client</span>
+                <div className="ui-page-header">
+                    <span className="ui-page-title">Create Client</span>
                 </div>
             </ContentHeader>
 
@@ -59,36 +59,34 @@ export default function CreateClientForm() {
                 <Card>
                     <h3>New Client Record</h3>
 
-                    <form onSubmit={handleSubmit} style={{ display: "grid", gap: "0.85rem", maxWidth: "640px", marginTop: "0.75rem" }}>
-                        <label style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Full Name</span>
+                    <form onSubmit={handleSubmit} className="ui-form" style={{ maxWidth: "640px" }}>
+                        <label className="ui-field">
+                            <span>Full Name</span>
                             <input
                                 type="text"
                                 value={fullName}
                                 onChange={(event) => setFullName(event.target.value)}
                                 placeholder="e.g. Juan Dela Cruz"
-                                style={{ padding: "0.55rem" }}
                             />
-                            {errors.fullName && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.fullName}</span>}
+                            {errors.fullName && <span className="ui-error">{errors.fullName}</span>}
                         </label>
 
-                        <label style={{ display: "grid", gap: "0.35rem" }}>
-                            <span style={{ fontWeight: "bold" }}>Address</span>
+                        <label className="ui-field">
+                            <span>Address</span>
                             <input
                                 type="text"
                                 value={address}
                                 onChange={(event) => setAddress(event.target.value)}
                                 placeholder="e.g. Davao City"
-                                style={{ padding: "0.55rem" }}
                             />
-                            {errors.address && <span style={{ color: "#b00020", fontSize: "0.9rem" }}>{errors.address}</span>}
+                            {errors.address && <span className="ui-error">{errors.address}</span>}
                         </label>
 
-                        <div style={{ display: "flex", gap: "0.6rem", marginTop: "0.4rem" }}>
-                            <button type="button" onClick={handleCancel} style={{ padding: "0.55rem 0.9rem" }}>
+                        <div className="ui-form-actions">
+                            <button className="btn-ghost" type="button" onClick={handleCancel}>
                                 Cancel
                             </button>
-                            <button type="submit" style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
+                            <button className="btn-primary" type="submit">
                                 Save Client
                             </button>
                         </div>

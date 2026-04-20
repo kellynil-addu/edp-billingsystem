@@ -9,8 +9,8 @@ export default function DashboardPage() {
     return (
         <>
         <ContentHeader>
-            <div style={{display: "flex", padding: "1rem", alignItems: "center"}}>
-                <span style={{fontSize: "20px", fontWeight: "bold"}}> Dashboard </span>
+            <div className="ui-page-header">
+                <span className="ui-page-title">Dashboard</span>
             </div>
         </ContentHeader>
         <ContentMain>
