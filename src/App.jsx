@@ -18,6 +18,8 @@ import EditClientForm from './clientsPage/EditClientForm';
 import ViewClientForm from './clientsPage/ViewClientForm';
 import ViewPropertyForm from './propertiesPage/ViewPropertyForm';
 import ViewPaymentForm from './recordsPage/ViewPaymentForm';
+import { useSession } from './session';
+import LoginGuard from './loginPage/LoginGuard';
 
 /**
  * @typedef {Object} AppContextValue
@@ -34,6 +36,7 @@ export const AppContext = createContext(
 
 export default function App() {
     const data = useAppData(loadData());
+    const session = useSession();
 
     const [currentPage, setCurrentPage] = useState({ name: 'dashboard', params: {} });
 
@@ -73,13 +76,15 @@ export default function App() {
     };
 
     return (
-            <AppContext.Provider value={{data, currentPage, setCurrentPage}}>
-                <div style={{display: "flex", alignItems: "stretch", height: "100vh", width: "100vw", maxHeight: "100vh"}}>
-                        <Sidebar/>
-                        <Content>
-                            {pageToRender()}
-                        </Content>
-                </div>
+            <AppContext.Provider value={{data, session, currentPage, setCurrentPage}}>
+                <LoginGuard>
+                    <div style={{display: "flex", alignItems: "stretch", height: "100vh", width: "100vw", maxHeight: "100vh"}}>
+                            {currentPage.name !== "login" && <Sidebar/>}
+                            <Content>
+                                {pageToRender()}
+                            </Content>
+                    </div>
+                </LoginGuard>
             </AppContext.Provider>
     )
 }
