@@ -8,6 +8,7 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
     const { data, currentPage, setCurrentPage } = useContext(AppContext);
 
     const propertyId = Number(propPropertyId ?? currentPage?.params?.propertyId);
+    const clientId = currentPage?.params?.clientId;
     const property = data.properties[propertyId];
 
     if (!property) {
@@ -34,13 +35,24 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
     const uniquePaymentIds = Array.from(new Set(property.account?.paymentIds || []));
     const totalPaid = uniquePaymentIds.reduce((sum, id) => sum + (data.payments[id]?.amount || 0), 0);
     const remainingBalance = totalPrice - totalPaid;
-    const owner = Object.values(data.clients).find(client => client.propertyIds?.includes(propertyId));
+    
+    const ownerEntry = Object.entries(data.clients).find(([_, client]) => client.propertyIds?.includes(propertyId));
+    const owner = ownerEntry ? ownerEntry[1] : null;
+    const ownerId = ownerEntry ? Number(ownerEntry[0]) : null;
 
     return (
         <>
             <ContentHeader>
-                <div style={{ display: "flex", padding: "1rem", alignItems: "center" }}>
+                <div style={{ display: "flex", padding: "1rem", alignItems: "center", justifyContent: "space-between", width: "100%"}}>
                     <span style={{ fontSize: "20px", fontWeight: "bold" }}>View Property</span>
+                    <div style={{ display: "flex", gap: "0.6rem" }}>
+                        <button onClick={() => setCurrentPage({ name: "editProperty", params: { propertyId } })} style={{ padding: "0.5rem 0.9rem", fontWeight: "bold" }}>
+                            Edit
+                        </button>
+                        <button onClick={() => setCurrentPage(clientId ? { name: "viewClient", params: { clientId } } : { name: "properties", params: {} })} style={{ padding: "0.5rem 0.9rem" }}>
+                            {clientId ? "Back to Client's Details" : "Back to Properties"}
+                        </button>
+                    </div>
                 </div>
             </ContentHeader>
 
@@ -92,7 +104,12 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
 
                         <div style={{ display: "grid", gap: "0.35rem" }}>
                             <span style={{ fontWeight: "bold" }}>Owner</span>
-                            <span>{owner ? owner.fullName : 'Unassigned'}</span>
+                            <button 
+                                onClick={() => ownerId && setCurrentPage({ name: "viewClient", params: { clientId: ownerId, propertyId } })}
+                                style={{ background: "none", border: "none", cursor: "pointer", color: "#0066cc", textAlign: "left", padding: 0, fontWeight: owner ? "bold" : "normal" }}
+                            >
+                                {owner ? owner.fullName : 'Unassigned'}
+                            </button>
                         </div>
 
                         <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
