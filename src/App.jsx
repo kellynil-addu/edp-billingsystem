@@ -10,6 +10,7 @@ import PropertiesPage from './propertiesPage/PropertiesPage';
 import { useAppData } from './useAppData';
 import CreatePaymentForm from './recordsPage/CreatePaymentForm';
 import CreatePropertyForm from './propertiesPage/CreatePropertyForm';
+import PropertyDetail from './propertiesPage/PropertyDetail';
 import EditPropertyForm from './propertiesPage/EditPropertyForm';
 import ClientsPage from './clientsPage/ClientsPage';
 import CreateClientForm from './clientsPage/CreateClientForm';
@@ -65,6 +66,8 @@ export default function App() {
                 return <ViewPropertyForm propertyId={currentPage.params.propertyId} />;
             case 'createProperty':
                 return <CreatePropertyForm />;
+            case 'propertyDetail':
+                return <PropertyDetail propertyId={currentPage.params.propertyId} />;
             case 'editProperty':
                 return <EditPropertyForm propertyId={currentPage.params.propertyId} />;
             default:

@@ -8,7 +8,6 @@ export default function ViewClientForm({ clientId: propClientId }) {
     const { data, currentPage, setCurrentPage } = useContext(AppContext);
 
     const clientId = Number(propClientId ?? currentPage?.params?.clientId);
-    const propertyId = currentPage?.params?.propertyId;
     const client = data.clients[clientId];
 
     if (!client) {
@@ -78,13 +77,9 @@ export default function ViewClientForm({ clientId: propClientId }) {
 
                                     return (
                                         <div key={propertyId} style={{ border: "1px solid #ddd", padding: "0.75rem", borderRadius: "0.25rem" }}>
-                                            <button
-                                                onClick={() => setCurrentPage({ name: "viewProperty", params: { propertyId, clientId } })}
-                                                style={{ fontWeight: "bold", background: "none", border: "none", cursor: "pointer", color: "#0066cc", textAlign: "left", padding: 0 }}
-                                            >
+                                            <div style={{ fontWeight: "bold" }}>
                                                 {property.area} - Block {property.blockNumber} Lot {property.lotNumber}
-
-                                            </button>
+                                            </div>
                                             <div style={{ display: "grid", gap: "0.25rem", marginTop: "0.5rem", fontSize: "0.9rem" }}>
                                                 <div><strong>Area (sqm):</strong> {property.areaInSqm}</div>
                                                 <div><strong>Price per sqm:</strong> {property.pricePerSqm}</div>
@@ -101,8 +96,8 @@ export default function ViewClientForm({ clientId: propClientId }) {
                     )}
 
                     <div style={{ display: "flex", gap: "0.6rem", marginTop: "1.5rem" }}>
-                        <button onClick={() => propertyId ? setCurrentPage({ name: "viewProperty", params: { propertyId } }) : setCurrentPage({ name: "clients", params: {} })} style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
-                            {propertyId ? "Back to Property Details" : "Back to Clients"}
+                        <button onClick={() => setCurrentPage({ name: "clients", params: {} })} style={{ padding: "0.55rem 0.9rem", fontWeight: "bold" }}>
+                            Back to Clients
                         </button>
                     </div>
                 </Card>
