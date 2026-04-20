@@ -79,7 +79,7 @@ export default function ViewClientForm({ clientId: propClientId }) {
                                     return (
                                         <div key={propertyId} style={{ border: "1px solid #ddd", padding: "0.75rem", borderRadius: "0.25rem" }}>
                                             <button
-                                                onClick={() => setCurrentPage({ name: "propertyDetail", params: { propertyId, clientId } })}
+                                                onClick={() => setCurrentPage({ name: "viewProperty", params: { propertyId, clientId } })}
                                                 style={{ fontWeight: "bold", background: "none", border: "none", cursor: "pointer", color: "#0066cc", textAlign: "left", padding: 0 }}
                                             >
                                                 {property.area} - Block {property.blockNumber} Lot {property.lotNumber}
