@@ -14,8 +14,8 @@ export default function SignupPage({data}) {
         {/* Decorative Side */}
         <div className="hidden md:flex w-1/2 relative overflow-hidden">
             <div className="absolute inset-0 bg-[hsl(187,55%,42%)] flex flex-col items-center justify-center text-white rounded-br-[60%]">
-            <h1 className="text-[42px] font-bold mb-2">Welcome Back!</h1>
-            <p className="text-base opacity-80">
+            <h1 style={{color: "white"}} className="text-[42px] font-bold mb-2">Welcome Back!</h1>
+            <p style={{color: "white"}} className="text-base opacity-80">
                 Sign in With Email & Password
             </p>
 

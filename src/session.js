@@ -16,7 +16,6 @@ export function useSession() {
         setCurrent(newSession)
         if (rememberMe) {
             sessionStorage.setItem("session", localStorage.setItem("session", JSON.stringify(newSession)));
-            alert("saved");
         }
     }
 

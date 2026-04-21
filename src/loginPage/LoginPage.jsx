@@ -92,8 +92,8 @@ export default function LoginPage({data}) {
 
             <div className="hidden md:flex w-1/2 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[hsl(187,55%,42%)] flex flex-col items-center justify-center text-white rounded-bl-[60%]">
-                <h1 className="text-[42px] font-bold mb-2">Welcome!</h1>
-                <p className="text-base opacity-80">Ready to get started!</p>
+                <h1 style={{color: "white"}} className="text-[42px] font-bold mb-2">Welcome!</h1>
+                <p style={{color: "white"}} className="text-base opacity-80">Ready to get started!</p>
 
                 <button
                     onClick={showSignup}

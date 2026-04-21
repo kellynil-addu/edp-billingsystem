@@ -16,7 +16,7 @@ export default function Sidebar() {
                     <SidebarTab activeKey="client" onClick={() => setCurrentPage({ name: "clients" })} icon={FaUsers}>Clients</SidebarTab>
                     <SidebarTab activeKey="propert" onClick={() => setCurrentPage({ name: "properties" })} icon={FaBuilding}>Properties</SidebarTab>
                     <SidebarTab activeKey="payment" onClick={() => setCurrentPage({ name: "payments" })} icon={FaMoneyBill}>Payments</SidebarTab>
-                    <SidebarTab activeKey="about" onClick={() => setCurrentPage({ name: "about" })} icon={FaInfoCircle}>About</SidebarTab>
+                    {/* <SidebarTab activeKey="about" onClick={() => setCurrentPage({ name: "about" })} icon={FaInfoCircle}>About</SidebarTab> */}
                 </div>
 
                 <div className={styles.bottomPanel}>

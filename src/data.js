@@ -56,95 +56,12 @@
  */
 
 const sample = {
-    clients: {
-        1: {
-            id: 1,
-            fullName: "John Doe",
-            address: "Davao City",
-            propertyIds: [1],
-        },
-
-        2: {
-            id: 2,
-            fullName: "Juan dela Cruz",
-            address: "Davao City",
-            propertyIds: [2],
-        }
-    },
-
-    properties: {
-        1: {
-            id: 1,
-            area: 'San Vic area',
-            blockNumber: 5,
-            lotNumber: 10,
-            areaInSqm: 70,
-            pricePerSqm: 200,
-
-            account: {
-                status: "active",
-                totalPrice: 140000,
-                remaining: 110000,
-                termStart: new Date().setHours(0,0,0,0),
-                termDuration: 24,
-                downPayment: 20000,
-                monthlyPayment: 5000,
-                paymentIds: [1,2],
-            }
-        },
-
-        2: {
-            id: 2,
-            area: 'San Vic area',
-            blockNumber: 8,
-            lotNumber: 4,
-            areaInSqm: 100,
-            pricePerSqm: 250,
-
-            account: {
-                status: "active",
-                totalPrice: 250000,
-                remaining: 170000,
-                termStart: new Date().setHours(0,0,0,0),
-                termDuration: 12,
-                downPayment: 10000,
-                monthlyPayment: 20000,
-                paymentIds: [3,4,5]
-            },
-        }
-    },
-
-    payments: {
-        2: {
-            id: 2,
-            amount: 6000,
-            paymentDate: new Date().setHours(6,0,0,0),
-        },
-        4: {
-            id: 4,
-            amount: 4000,
-            paymentDate: new Date().setHours(10,21,0,0)
-        },
-        1: {
-            id: 1,
-            amount: 30000,
-            paymentDate: new Date().setHours(5,30,0,0),
-        },
-        3: {
-            id: 3,
-            amount: 20000,
-            paymentDate: new Date().setHours(7,44,0,0)
-        },
-        5: {
-            id: 5,
-            amount: 10000,
-            paymentDate: new Date().setHours(16,11,0,0)
-        },
-    },
-
-    lastClientId: 1,
-    lastPropertyId: 1,
-    lastPaymentId: 2,
+    clients: {},
+    properties: {},
+    payments: {},
+    lastClientId: 0,
+    lastPropertyId: 0,
+    lastPaymentId: 0,
 }
 
 class AppData {
