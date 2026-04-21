@@ -336,6 +336,7 @@ button:disabled {
   border-radius: 0;
   box-shadow: none;
   padding: 0;
+  cursor: pointer;
   color: var(--brand-600);
   font-weight: 700;
   background: none;
