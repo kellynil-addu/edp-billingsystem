@@ -153,6 +153,33 @@ export default function RecordList({ records = [], recordType = "records", loadi
                 });
             }
 
+            if(category.includes("date")){
+                var date = query.slice(query.indexOf("#date:")+6,query.indexOf(" ", query.indexOf("#date:")) > -1 ? query.indexOf(" ", query.indexOf("#date:")) : undefined).toLowerCase();
+                console.log("Filtering by Date:", date);
+
+                //MM-DD-YYYY to YYYY-MM-DD
+
+                var formattedDate;
+                if(date.includes("/")) {
+                    const parts = date.split("/");
+
+                    if(parts[0].length<2){
+                        parts[0] = "0"+parts[0];
+                    }
+
+                    console.log("HELP"+parts[0], parts[1], parts[2]);
+
+                    formattedDate = new Date(`${parts[2]}-${parts[0]}-${parts[1]}`);
+                }
+                
+                console.log(formattedDate);
+
+                filteredPayments = filteredPayments.filter(payment => {
+                    const paymentDate = new Date(payment.date);
+                    return paymentDate.toDateString() === formattedDate.toDateString();
+                });
+            }
+
             if(category.includes("amount")) {
                 var amount = query.slice(query.indexOf("#amount:")+8,query.indexOf(" ", query.indexOf("#amount:")) > -1 ? query.indexOf(" ", query.indexOf("#amount:")) : undefined).toLowerCase();
                 console.log("Filtering by Amount:", amount);
