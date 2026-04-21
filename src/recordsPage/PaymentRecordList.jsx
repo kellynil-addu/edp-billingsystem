@@ -167,6 +167,10 @@ export default function RecordList({ records = [], recordType = "records", loadi
                         parts[0] = "0"+parts[0];
                     }
 
+                    if(parts[1].length<2){
+                        parts[1] = "0"+parts[1];
+                    }
+
                     console.log("HELP"+parts[0], parts[1], parts[2]);
 
                     formattedDate = new Date(`${parts[2]}-${parts[0]}-${parts[1]}`);
