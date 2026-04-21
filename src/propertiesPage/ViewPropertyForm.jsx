@@ -104,12 +104,12 @@ export default function ViewPropertyForm({ propertyId: propPropertyId }) {
 
                         <div className="ui-field">
                             <span>Owner</span>
-                            <a 
+                            <button 
                                 className="btn-link"
                                 onClick={() => ownerId && setCurrentPage({ name: "viewClient", params: { clientId: ownerId, propertyId } })}
                             >
                                 {owner ? owner.fullName : 'Unassigned'}
-                            </a>
+                            </button>
                         </div>
 
                         <div className="ui-two-col">
